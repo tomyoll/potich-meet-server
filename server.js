@@ -1,6 +1,4 @@
-const fs = require("fs");
 const express = require("express");
-const bodyParser = require("body-parser");
 
 const app = express();
 const server = require("http").createServer(app);
@@ -10,9 +8,6 @@ const io = require("socket.io")(server, {
     origin: "*",
   },
 });
-
-app.use(bodyParser.json());
-app.use("/", express.static("../front/dist"));
 
 io.on("error", (error) => console.log(error));
 
