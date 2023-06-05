@@ -4,14 +4,8 @@ const express = require("express");
 
 const fs = require("fs");
 
-const key = fs.readFileSync(process.env.KEY_FILE_NAME);
-const cert = fs.readFileSync(process.env.CERTIFICATE_FILE_NAME);
-
 const app = express();
-const server = require("https").createServer(
-  { key, cert, passphrase: process.env.CERTIFICATE_PASSPHRASE },
-  app
-);
+const server = require("http").createServer(app);
 
 const io = require("socket.io")(server, {
   cors: {
